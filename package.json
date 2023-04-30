@@ -1,0 +1,23 @@
+{
+  "name": "ephinea-wiki-quest-scraper",
+  "version": "1.0.0",
+  "description": "A NodeJS webscraper to parse through Ephinea Wiki for Quest data > parse the JSON response data into LUA object > use FileSystem to write the LUA object into a quest.lua file for use",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MachineHerald007/Ephinea-Wiki-Quest-Scraper.git"
+  },
+  "author": "Machine Herald",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MachineHerald007/Ephinea-Wiki-Quest-Scraper/issues"
+  },
+  "homepage": "https://github.com/MachineHerald007/Ephinea-Wiki-Quest-Scraper#readme",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "jsdom": "^21.1.1"
+  }
+}
