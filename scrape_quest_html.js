@@ -7,28 +7,26 @@ module.exports = (DOM, quests, areas) => {
         DOM.window.document.querySelector(".mw-page-title-main") &&
         DOM.window.document.querySelector(".mw-page-title-main").textContent
     ) {
-            name = DOM.window.document.querySelector(".mw-page-title-main").textContent
+        name = DOM.window.document.querySelector(".mw-page-title-main").textContent
     } else {
         name = ""
     }
-
     
     DOM.window.document.querySelectorAll("th").forEach(n => {
         if (n.textContent == "Episode 1") episode = "Episode 1"
         if (n.textContent == "Episode 2") episode = "Episode 2"
         if (n.textContent == "Episode 4") episode = "Episode 4"
-
-        if (n.textContent == "Category:" && n.nextElementSibling) category = n.nextElementSibling.textContent
-        if (n.textContent == "Client:" && n.nextElementSibling) client = n.nextElementSibling.textContent
-        if (n.textContent == "Reward:" && n.nextElementSibling) reward = n.nextElementSibling.textContent
-        if (n.textContent == "Info:" && n.nextElementSibling) info = n.nextElementSibling.textContent
-        if (n.textContent == "Author:" && n.nextElementSibling) author = n.nextElementSibling.textContent
+        if (n.textContent == "Category:") category = n.nextElementSibling.textContent
+        if (n.textContent == "Client:") client = n.nextElementSibling.textContent
+        if (n.textContent == "Reward:") reward = n.nextElementSibling.textContent
+        if (n.textContent == "Info:") info = n.nextElementSibling.textContent
+        if (n.textContent == "Author:") author = n.nextElementSibling.textContent
     })
 
     //find Total XP element and create total_xp object
     DOM.window.document.querySelectorAll(".tabbertab").forEach(n => {
         const table_rows = n.querySelectorAll("tr")
-        let xp_obj, total = {}, xp_rows
+        let xp_obj, xp_rows, total = {}
         
         //loop to 2nd row containing xp values
         for (const [key, value] of Object.entries(table_rows)) {
@@ -75,8 +73,6 @@ module.exports = (DOM, quests, areas) => {
         }
     })
 
-
-
     quests[episode][category][name] = {
         "Name": name,
         "Category": category || "",
@@ -88,5 +84,4 @@ module.exports = (DOM, quests, areas) => {
         "Mobs": mobs,
         "Total XP": total_xp
     }
-
 }
