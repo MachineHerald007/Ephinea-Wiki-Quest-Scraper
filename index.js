@@ -7,6 +7,7 @@ const URL = "https://wiki.pioneer2.net"
 const quest_names = require("./questnames")
 const quests = require("./quest_data")
 const scrape_quest = require("./scrape_quest_html")
+const JSON_TO_FILE = require("./JSON_to_file")
 
 function get_HTML(link, areas) {
     return new Promise((resolve, reject) => {
@@ -49,6 +50,7 @@ function main() {
             const { DOM, areas } = response
             scrape_quest(DOM, quests, areas)
         })
+        JSON_TO_FILE(quests, () => console.log("SUCCESSFULLY WROTE JSON TO FILE"))
     })
     .catch(err => console.log(err))
 }
