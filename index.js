@@ -11,15 +11,15 @@ const scrape_quest = require("./scrape_quest_html")
 function get_HTML(link, areas) {
     return new Promise((resolve, reject) => {
         axios
-            .get(`${URL}${link}`)
-            .then(response => {
-                const DOM = new JSDOM(response.data)
-                resolve({
-                    DOM: DOM,
-                    areas: areas
-                })
+        .get(`${URL}${link}`)
+        .then(response => {
+            const DOM = new JSDOM(response.data)
+            resolve({
+                DOM: DOM,
+                areas: areas
             })
-            .catch(err => reject(err))
+        })
+        .catch(err => reject(err))
     })
 }
 
