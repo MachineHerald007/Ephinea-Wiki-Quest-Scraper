@@ -44,8 +44,8 @@ function main() {
         })
     })
     .then(() => Promise.all(request_stack))
-    .then(request_stack => {
-        request_stack.forEach(stack => {
+    .then(response_stack => {
+        response_stack.forEach(stack => {
             const { DOM, areas } = stack
             scrape_quest(DOM, quests, areas)
         })
