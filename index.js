@@ -36,7 +36,7 @@ function main() {
 
                 //parsing out areas data is much easier here than on quest page
                 if (_has(n, "parentElement.nextElementSibling.textContent")) {
-                    areas = n.parentElement.nextElementSibling.textContent.replace(/(\r\n|\n|\r)/gm, "") || ''
+                    areas = n.parentElement.nextElementSibling.textContent.replace(/(\r\n|\n|\r)/gm, "")
                 }
 
                 request_stack.push(get_HTML(n.href, areas))
