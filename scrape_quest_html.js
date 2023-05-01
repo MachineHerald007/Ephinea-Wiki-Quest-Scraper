@@ -3,7 +3,8 @@ module.exports = (DOM, quests, areas) => {
     let _areas, area_links, mob_table
     let total_xp = {}, mobs = {}
 
-    if (
+    if 
+    (
         DOM.window.document.querySelector(".mw-page-title-main") &&
         DOM.window.document.querySelector(".mw-page-title-main").textContent
     ) {
@@ -53,7 +54,8 @@ module.exports = (DOM, quests, areas) => {
     area_links = DOM.window.document.querySelectorAll("a")
     area_links.forEach(n => {
         //ensures only the area table covering enemy mobs, not enemy boxes table, is parsed
-        if (
+        if
+        (
             _areas.includes(n.textContent) &&
             n.parentElement.parentElement.nextElementSibling.children[0].textContent.replace(/(\r\n|\n|\r)/gm, "") == "Enemy"
         ) {
