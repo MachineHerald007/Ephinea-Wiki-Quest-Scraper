@@ -1,3 +1,21 @@
+const _has = require("lodash.hasin")
+
+function area_check(arr, node) {
+    const str = node.textContent.replace(/(\r\n|\n|\r)/gm, "")
+    for (let i=0; i<arr.length; i++) {
+        if (
+            str.includes(arr[i].split(" ")[0]) &&
+            _has(node, "parentElement.parentElement.nextElementSibling.children") &&
+            node.parentElement.parentElement.nextElementSibling.children[0].textContent.replace(/(\r\n|\n|\r)/gm, "") == "Enemy"
+           )
+        {
+            console.log("MATCHES: ", str)
+            return true
+        }
+        return false
+    }
+}
+
 module.exports = (DOM, quests, areas) => {
     let episode, category, name, client, author, info, reward, boxes
     let _areas, area_links, mob_table
@@ -54,11 +72,7 @@ module.exports = (DOM, quests, areas) => {
     area_links = DOM.window.document.querySelectorAll("a")
     area_links.forEach(n => {
         //ensures only the area table covering enemy mobs, not enemy boxes table, is parsed
-        if
-        (
-            _areas.includes(n.textContent) &&
-            n.parentElement.parentElement.nextElementSibling.children[0].textContent.replace(/(\r\n|\n|\r)/gm, "") == "Enemy"
-        ) {
+        if(area_check(_areas, n)) {
             mobs[n.textContent] = {}
             mob_table = n.parentElement.parentElement.parentElement.querySelectorAll("tr")
 
