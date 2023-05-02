@@ -2,18 +2,19 @@ const _has = require("lodash.hasin")
 
 function area_check(arr, node) {
     const str = node.textContent.replace(/(\r\n|\n|\r)/gm, "")
+    let bool = false
     for (let i=0; i<arr.length; i++) {
-        if (
+        if
+        (
             str.includes(arr[i].split(" ")[0]) &&
             _has(node, "parentElement.parentElement.nextElementSibling.children") &&
             node.parentElement.parentElement.nextElementSibling.children[0].textContent.replace(/(\r\n|\n|\r)/gm, "") == "Enemy"
-           )
+        )
         {
-            console.log("MATCHES: ", str)
-            return true
+            bool = true
         }
-        return false
     }
+    return bool
 }
 
 module.exports = (DOM, quests, areas) => {
