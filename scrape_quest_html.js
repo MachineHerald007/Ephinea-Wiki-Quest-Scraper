@@ -95,7 +95,7 @@ module.exports = (DOM, quests, areas) => {
         "Category": category || "",
         "Client": client || "",
         "Reward": reward || "",
-        "info": info || "",
+        "Info": info || "",
         "Author": author,
         "Areas": areas,
         "Mobs": mobs,
