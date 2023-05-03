@@ -4,8 +4,9 @@ const jsdom = require("jsdom")
 const { JSDOM } = jsdom
 
 const URL = "https://wiki.pioneer2.net"
-const quest_names = require("./questnames")
 const quests = require("./quest_data")
+const quest_names = require("./questnames")
+const episode_areas = require("./episode_areas")
 const scrape_quest = require("./scrape_quest_html")
 const JSON_TO_FILE = require("./JSON_to_file")
 
@@ -24,6 +25,8 @@ function get_HTML(link, areas) {
     })
 }
 
+
+
 function main() {
     const request_stack = []
 
@@ -36,8 +39,9 @@ function main() {
                 let areas = ""
 
                 //parsing out areas data is much easier here than on quest page
-                if (_has(n, "parentElement.nextElementSibling.textContent")) {
-                    areas = n.parentElement.nextElementSibling.textContent.replace(/(\r\n|\n|\r)/gm, "")
+                if (_has(n, "parentElement.nextElementSibling.textContent")) areas = n.parentElement.nextElementSibling.textContent.replace(/(\r\n|\n|\r)/gm, "")
+                if (episode_areas["areas"].includes(areas)) {
+                    areas = episode_areas[areas]
                 }
 
                 request_stack.push(get_HTML(n.href, areas))
