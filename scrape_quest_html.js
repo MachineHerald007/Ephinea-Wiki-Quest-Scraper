@@ -73,8 +73,16 @@ module.exports = (DOM, quests, areas) => {
     area_links = DOM.window.document.querySelectorAll("a")
     area_links.forEach(n => {
         //ensures only the area table covering enemy mobs, not enemy boxes table, is parsed
-        if(area_check(_areas, n)) {
-            mobs[n.textContent] = {}
+        if (area_check(_areas, n)) {
+            let area_name = ""
+
+            if (_has(mobs, n.textContent)) {
+                area_name = n.textContent + " Random Spawns"
+            } else {
+                area_name = n.textContent
+            }
+        
+            mobs[area_name] = {}
             mob_table = n.parentElement.parentElement.parentElement.querySelectorAll("tr")
 
             //filter out title and headers to only parse out mob data & loop through key value node pairs
@@ -83,10 +91,9 @@ module.exports = (DOM, quests, areas) => {
                     const mob_name = value.children[0].firstChild.textContent.replace(/(\r\n|\n|\r)/gm, "") || ""
                     const mob_number = value.children[1].textContent.replace(/(\r\n|\n|\r)/gm, "") || ""
 
-                    mobs[n.textContent][mob_name] = mob_number
+                    mobs[area_name][mob_name] = mob_number
                 }
             }
-
         }
     })
 
