@@ -25,8 +25,6 @@ function get_HTML(link, areas) {
     })
 }
 
-
-
 function main() {
     const request_stack = []
 
