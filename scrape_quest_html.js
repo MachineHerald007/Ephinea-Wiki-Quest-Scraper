@@ -19,7 +19,7 @@ function area_check(arr, node) {
 
 module.exports = (DOM, quests, areas) => {
     let episode, category, name, client, author, info, reward, boxes
-    let _areas, area_links, mob_table
+    let _areas, area_links, mob_table, bosses, bosses_table
     let total_xp = {}, mobs = {}
 
     if 
@@ -33,14 +33,17 @@ module.exports = (DOM, quests, areas) => {
     }
     
     DOM.window.document.querySelectorAll("th").forEach(n => {
-        if (n.textContent == "Episode 1") episode = "Episode 1"
-        if (n.textContent == "Episode 2") episode = "Episode 2"
-        if (n.textContent == "Episode 4") episode = "Episode 4"
-        if (n.textContent == "Category:") category = n.nextElementSibling.textContent
-        if (n.textContent == "Client:") client = n.nextElementSibling.textContent
-        if (n.textContent == "Reward:") reward = n.nextElementSibling.textContent
-        if (n.textContent == "Info:") info = n.nextElementSibling.textContent
-        if (n.textContent == "Author:") author = n.nextElementSibling.textContent
+        const cleaned_text = n.textContent.replace(/(\r\n|\n|\r)/gm, "")
+
+        if (cleaned_text == "Episode 1") episode = "Episode 1"
+        if (cleaned_text == "Episode 2") episode = "Episode 2"
+        if (cleaned_text == "Episode 4") episode = "Episode 4"
+        if (cleaned_text == "Category:") category = n.nextElementSibling.textContent
+        if (cleaned_text == "Client:") client = n.nextElementSibling.textContent
+        if (cleaned_text == "Reward:") reward = n.nextElementSibling.textContent
+        if (cleaned_text == "Info:") info = n.nextElementSibling.textContent
+        if (cleaned_text == "Author:") author = n.nextElementSibling.textContent
+        if (cleaned_text == "Bosses") bosses = n
     })
 
     //find Total XP element and create total_xp object
@@ -71,11 +74,8 @@ module.exports = (DOM, quests, areas) => {
 
     _areas = areas.split(",").map(area => area.trim())
     area_links = DOM.window.document.querySelectorAll("a")
-
-
     area_links.forEach(n => {
         //ensures only the area table covering enemy mobs, not enemy boxes table, is parsed
-
         if (area_check(_areas, n)) {
             let area_name = ""
 
@@ -99,8 +99,20 @@ module.exports = (DOM, quests, areas) => {
                 }
             }
         }
-       
     })
+
+    if (bosses) {
+        bosses_table = bosses.parentElement.parentElement.querySelectorAll("tr")
+        mobs["Bosses"] = {}
+
+        for (const [key, value] of Object.entries(bosses_table)) {
+            if (key > 1) {
+                const boss_name = value.children[0].firstChild.textContent.replace(/(\r\n|\n|\r)/gm, "") || ""
+                const boss_number = value.children[1].textContent.replace(/(\r\n|\n|\r)/gm, "") || ""
+                mobs["Bosses"][boss_name] = boss_number
+            }
+        }
+    }
 
     quests[episode][category][name] = {
         "Name": name,
