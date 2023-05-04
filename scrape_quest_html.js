@@ -3,6 +3,7 @@ const _has = require("lodash.hasin")
 function area_check(arr, node) {
     const str = node.textContent.replace(/(\r\n|\n|\r)/gm, "")
     let bool = false
+    
     for (let i=0; i<arr.length; i++) {
         if
         (
@@ -14,6 +15,7 @@ function area_check(arr, node) {
             bool = true
         }
     }
+
     return bool
 }
 
@@ -34,7 +36,6 @@ module.exports = (DOM, quests, areas) => {
     
     DOM.window.document.querySelectorAll("th").forEach(n => {
         const cleaned_text = n.textContent.replace(/(\r\n|\n|\r)/gm, "")
-
         if (cleaned_text == "Episode 1") episode = "Episode 1"
         if (cleaned_text == "Episode 2") episode = "Episode 2"
         if (cleaned_text == "Episode 4") episode = "Episode 4"
@@ -104,7 +105,6 @@ module.exports = (DOM, quests, areas) => {
     if (bosses) {
         bosses_table = bosses.parentElement.parentElement.querySelectorAll("tr")
         mobs["Bosses"] = {}
-
         for (const [key, value] of Object.entries(bosses_table)) {
             if (key > 1) {
                 const boss_name = value.children[0].firstChild.textContent.replace(/(\r\n|\n|\r)/gm, "") || ""

@@ -37,13 +37,10 @@ function main() {
         DOM.window.document.querySelectorAll("a").forEach(n => {
             if (quest_names.includes(n.textContent)) {
                 let areas = ""
-
                 //parsing out areas data is much easier here than on quest page
                 if (_has(n, "parentElement.nextElementSibling.textContent")) areas = n.parentElement.nextElementSibling.textContent.replace(/(\r\n|\n|\r)/gm, "")
-                if (episode_areas["areas"].includes(areas)) {
-                    areas = episode_areas[areas]
-                }
-
+                if (episode_areas["areas"].includes(areas)) areas = episode_areas[areas]
+                
                 request_stack.push(get_HTML(n.href, areas))
             }
         })
