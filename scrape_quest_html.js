@@ -3,7 +3,6 @@ const _has = require("lodash.hasin")
 function area_check(arr, node) {
     const str = node.textContent.replace(/(\r\n|\n|\r)/gm, "")
     let bool = false
-    
     for (let i=0; i<arr.length; i++) {
         if
         (
@@ -15,7 +14,6 @@ function area_check(arr, node) {
             bool = true
         }
     }
-
     return bool
 }
 
@@ -56,7 +54,6 @@ module.exports = (DOM, quests, areas) => {
         for (const [key, value] of Object.entries(table_rows)) {
             if (key == 1) xp_obj = value
         }
-
         //loop through xp rows and add to total xp object
         xp_rows = xp_obj.querySelectorAll("td")
         for (const [key, value] of Object.entries(xp_rows)) {
@@ -85,7 +82,6 @@ module.exports = (DOM, quests, areas) => {
             } else {
                 area_name = n.textContent
             }
-
             //check if table is a boss room
             if (!area_name.includes("Final")) {
                 mobs[area_name] = {}
