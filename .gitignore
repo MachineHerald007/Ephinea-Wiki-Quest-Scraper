@@ -130,4 +130,4 @@ dist
 .pnp.*
 
 # Quest Lua Table file
-.lua
+*.lua
