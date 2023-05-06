@@ -7,7 +7,7 @@ function JSON_TO_LUA(quests) {
     console.log(output_dir)
     try {
         const parsed = JSON.parse(JSON.stringify(quests))
-        const options = { eol: '\n', singleQuote: false, spaces: 2 }
+        const options = { eol: "\n", singleQuote: false, spaces: 2 }
         const _quests = format(parsed, options)
         return _quests
     } catch(e) {
