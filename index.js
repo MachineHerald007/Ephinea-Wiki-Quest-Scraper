@@ -5,11 +5,11 @@ const jsdom = require("jsdom")
 const { JSDOM } = jsdom
 
 //APP FILES & VARIABLES
-const quests = require("./quest_data")
-const quest_names = require("./questnames")
-const episode_areas = require("./episode_areas")
-const scrape_quest = require("./scrape_quest_html")
-const JSON_TO_FILE = require("./JSON_to_file")
+const quests = require("./src/data/quest_data")
+const quest_names = require("./src/data/questnames")
+const episode_areas = require("./src/data/episode_areas")
+const scrape_quest = require("./src/scrape_quest_html")
+const JSON_TO_FILE = require("./src/util/JSON_to_file")
 const URL = "https://wiki.pioneer2.net"
 
 function get_HTML(link, areas) {
