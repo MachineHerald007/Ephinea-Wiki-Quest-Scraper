@@ -11,4 +11,4 @@ function JSON_TO_LUA(quests) {
         console.log(e)
     }
 }
-module.exports = (quests, callback) => fs.writeFile("quests.lua", JSON_TO_LUA(quests, callback), callback)
+module.exports = (quests, callback) => fs.writeFile("quests.lua", JSON_TO_LUA(quests), callback)
