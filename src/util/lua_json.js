@@ -110,5 +110,5 @@ const parse = value => luaAstToJson(parseLua(value, { comments: false }))
 
 module.exports = {
   format,
-  parse,
+  parse
 }
