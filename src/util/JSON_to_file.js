@@ -1,5 +1,5 @@
 const fs = require("fs")
-const path = require('node:path')
+const path = require("node:path")
 const output_dir = path.join(__dirname, "..", "..", "output", "quests.lua")
 const { format } = require("./lua_json")
 
