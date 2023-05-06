@@ -1,5 +1,5 @@
 const fs = require("fs")
-const { format } = require("lua-json")
+const { format } = require("./lua_json")
 
 function JSON_TO_LUA(quests) {
     try {

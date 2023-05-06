@@ -1,14 +1,16 @@
+//PACKAGES
 const axios = require("axios")
 const _has = require("lodash.hasin")
 const jsdom = require("jsdom")
 const { JSDOM } = jsdom
 
-const URL = "https://wiki.pioneer2.net"
+//APP FILES & VARIABLES
 const quests = require("./quest_data")
 const quest_names = require("./questnames")
 const episode_areas = require("./episode_areas")
 const scrape_quest = require("./scrape_quest_html")
 const JSON_TO_FILE = require("./JSON_to_file")
+const URL = "https://wiki.pioneer2.net"
 
 function get_HTML(link, areas) {
     return new Promise((resolve, reject) => {
@@ -47,7 +49,7 @@ function main() {
             const { DOM, areas } = response
             scrape_quest(DOM, quests, areas)
         })
-        JSON_TO_FILE(quests, () => console.log("SUCCESSFULLY WROTE JSON TO FILE"))
+        JSON_TO_FILE(quests, () => console.log("SUCCESSFULLY WROTE LUA TABLE TO FILE"))
     })
     .catch(err => console.log(err))
 }
