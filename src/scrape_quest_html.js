@@ -34,9 +34,9 @@ module.exports = (DOM, quests, areas) => {
     
     DOM.window.document.querySelectorAll("th").forEach(n => {
         const cleaned_text = n.textContent.replace(/(\r\n|\n|\r)/gm, "")
-        if (cleaned_text == "Episode 1") episode = "Episode 1"
-        if (cleaned_text == "Episode 2") episode = "Episode 2"
-        if (cleaned_text == "Episode 4") episode = "Episode 4"
+        if (cleaned_text == "Episode 1") episode = "EPISODE 1"
+        if (cleaned_text == "Episode 2") episode = "EPISODE 2"
+        if (cleaned_text == "Episode 4") episode = "EPISODE 4"
         if (cleaned_text == "Category:") category = n.nextElementSibling.textContent
         if (cleaned_text == "Client:") client = n.nextElementSibling.textContent
         if (cleaned_text == "Reward:") reward = n.nextElementSibling.textContent

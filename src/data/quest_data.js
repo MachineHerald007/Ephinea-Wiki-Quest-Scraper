@@ -1,5 +1,5 @@
 module.exports = {
-    "Episode 1": {
+    "EPISODE 1": {
         "Government": {
           
         },
@@ -28,7 +28,7 @@ module.exports = {
 
         }
     },
-    "Episode 2": {
+    "EPISODE 2": {
         "Government": {
 
         },
@@ -60,7 +60,7 @@ module.exports = {
 
         }
     },
-    "Episode 4": {
+    "EPISODE 4": {
         "Government": {
 
         },
