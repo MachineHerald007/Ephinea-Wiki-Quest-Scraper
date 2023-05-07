@@ -47,26 +47,29 @@ module.exports = (DOM, quests, areas) => {
 
     //find Total XP element and create total_xp object
     DOM.window.document.querySelectorAll(".tabbertab").forEach(n => {
-        const table_rows = n.querySelectorAll("tr")
-        let xp_obj, xp_rows, total = {}
-        
-        //loop to 2nd row containing xp values
-        for (const [key, value] of Object.entries(table_rows)) {
-            if (key == 1) xp_obj = value
-        }
-        //loop through xp rows and add to total xp object
-        xp_rows = xp_obj.querySelectorAll("td")
-        for (const [key, value] of Object.entries(xp_rows)) {
-            if (key == 0) total["Normal"] = value.textContent || ""
-            if (key == 1) total["Hard"] = value.textContent || ""
-            if (key == 2) total["Very Hard"] = value.textContent || ""
-            if (key == 3) total["Ultimate"] = value.textContent || ""
-        }
+        //only scrape from xp table
+        if (n.parentElement.id == "tabber-c6bec37eb5f1309e19ddd9d886339c70") {
+            const table_rows = n.querySelectorAll("tr")
+            let xp_obj, xp_rows, total = {}
+            
+            //loop to 2nd row containing xp values
+            for (const [key, value] of Object.entries(table_rows)) {
+                if (key == 1) xp_obj = value
+            }
+            //loop through xp rows and add to total xp object
+            xp_rows = xp_obj.querySelectorAll("td")
+            for (const [key, value] of Object.entries(xp_rows)) {
+                if (key == 0) total["Normal"] = value.textContent || ""
+                if (key == 1) total["Hard"] = value.textContent || ""
+                if (key == 2) total["Very Hard"] = value.textContent || ""
+                if (key == 3) total["Ultimate"] = value.textContent || ""
+            }
 
-        if (n.title == "Normal") {
-            total_xp["Multi"] = total
-        } else {
-            total_xp["Solo"] = total
+            if (n.title == "Normal") {
+                total_xp["Multi"] = total
+            } else {
+                total_xp["Solo"] = total
+            }
         }
     })
 
