@@ -10,6 +10,7 @@ const quest_names = require("./src/data/questnames")
 const episode_areas = require("./src/data/episode_areas")
 const scrape_quest = require("./src/scrape_quest_html")
 const JSON_TO_FILE = require("./src/util/JSON_to_file")
+const questnames = require("./src/data/questnames")
 const URL = "https://wiki.pioneer2.net"
 
 function get_HTML(link, areas) {
@@ -34,7 +35,8 @@ function main() {
     .then(response => {
         const DOM = new JSDOM(response.data)
         DOM.window.document.querySelectorAll("a").forEach(n => {
-            if (quest_names.includes(n.textContent)) {
+            const quest_name = n.textContent.replace(/(\r\n|\n|\r)/gm, "")
+            if (quest_names.includes(quest_name)) {
                 let areas = ""
                 //parsing out areas data is much easier here than on quest page
                 if (_has(n, "parentElement.nextElementSibling.textContent"))
@@ -47,10 +49,10 @@ function main() {
     })
     .then(() => Promise.all(request_stack))
     .then(response_stack => {
-        response_stack.forEach(response => {
-            const { DOM, areas } = response
-            scrape_quest(DOM, quests, areas)
-        })
+        for (let i=0; i<response_stack.length; i++) {
+            const { DOM, areas } = response_stack[i]
+            scrape_quest(DOM, quests, areas, i)
+        }
         JSON_TO_FILE(quests, () => console.log("SUCCESSFULLY WROTE LUA TABLE TO FILE"))
     })
     .catch(err => console.log(err))

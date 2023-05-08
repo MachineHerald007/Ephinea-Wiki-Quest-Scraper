@@ -17,7 +17,7 @@ function area_check(arr, node) {
     return bool
 }
 
-module.exports = (DOM, quests, areas) => {
+module.exports = (DOM, quests, areas, i) => {
     let episode, category, name, client, author, info, reward, boxes
     let _areas, area_links, mob_table, bosses, bosses_table
     let total_xp = {}, mobs = {}
@@ -27,7 +27,7 @@ module.exports = (DOM, quests, areas) => {
         DOM.window.document.querySelector(".mw-page-title-main") &&
         DOM.window.document.querySelector(".mw-page-title-main").textContent
     ) {
-        name = DOM.window.document.querySelector(".mw-page-title-main").textContent
+        name = DOM.window.document.querySelector(".mw-page-title-main").textContent.replace(/(\r\n|\n|\r)/gm, "")
     } else {
         name = ""
     }
@@ -113,7 +113,7 @@ module.exports = (DOM, quests, areas) => {
         }
     }
 
-    quests[episode][category][name] = {
+    quests[episode][category][i] = {
         "Name": name,
         "Category": category || "",
         "Client": client || "",
